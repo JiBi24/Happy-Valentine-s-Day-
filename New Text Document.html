@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>For My Love 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 20vh;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    color: #ff4d6d;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff4d6d;
+    color: white;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 22px;
+    min-height: 60px;
+}
+
+.heart {
+    position: absolute;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Happy Valentine's Day 💕</h1>
+    <button onclick="startSurprise()">กดเพื่อดูข้อความ</button>
+    <div id="message"></div>
+</div>
+
+<script>
+function startSurprise() {
+    const text = "ขอบคุณที่อยู่ข้างกันนะ เรารักเธอมาก ๆ 💖";
+    let i = 0;
+    const speed = 70;
+    const messageDiv = document.getElementById("message");
+    messageDiv.innerHTML = "";
+
+    const typing = setInterval(() => {
+        if (i < text.length) {
+            messageDiv.innerHTML += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(typing);
+            createHearts();
+        }
+    }, speed);
+}
+
+function createHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 20 + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
